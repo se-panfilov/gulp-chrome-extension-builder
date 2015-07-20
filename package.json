@@ -26,5 +26,8 @@
     "type": "git",
     "url": "https://github.com/se-panfilov/gulp-chrome-extension-builder.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "shell": "^0.3.2"
+  }
 }
