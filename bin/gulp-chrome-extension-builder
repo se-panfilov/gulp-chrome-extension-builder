@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var program = require('commander'),
+    main = require('../lib/gulp-chrome-extension-builder');
+
+program
+    .version(require('../package').version)
+    //.description('')
+    //.usage('[options]')
+    .option('-z, --zip', 'Make zip instead of .crx');
+
+program.parse(process.argv);
+
+main.run(program);
