@@ -1,0 +1,30 @@
+{
+  "name": "gulp-chrome-extension-builder",
+  "version": "0.0.0",
+  "description": "Make chromium extensions (crx)",
+  "keywords": [
+    "chrome",
+    "chromium",
+    "extension",
+    "pack",
+    "plugin",
+    "crx",
+    "crxmaker",
+    "gulpplugin",
+    "packer"
+  ],
+  "homepage": "https://github.com/se-panfilov/gulp-chrome-extension-builder",
+  "bugs": {
+    "url": "https://github.com/se-panfilov/gulp-chrome-extension-builder/issues"
+  },
+  "author": "S.Panfilov <se-panfilov@ya.ru> (https://se-panfilov.github.io/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/se-panfilov/gulp-chrome-extension-builder.git"
+  },
+  "license": "MIT"
+}
