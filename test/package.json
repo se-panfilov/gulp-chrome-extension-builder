@@ -2,6 +2,10 @@
   "name": "test",
   "version": "0.0.0",
   "dependencies": {
-    "gcp": "git://github.com/se-panfilov/gulp-chrome-extension-builder.git"
+    "crx": "^3.0.1",
+    "fs": "0.0.2",
+    "gcp": "git://github.com/se-panfilov/gulp-chrome-extension-builder.git",
+    "mkdirp": "^0.5.1",
+    "path": "^0.11.14"
   }
 }
