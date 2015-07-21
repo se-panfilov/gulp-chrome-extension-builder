@@ -10,7 +10,14 @@ module.exports = function (opts) {
 
     var extensionData = {};
     extensionData.codebase = opts.codebase;
-    privateKey.codebase = fs.readFileSync(join(opts.privateKey.dirname, opts.privateKey.name));
+    var key = null;
+
+    if (opts.privateKey) {
+        key = {};
+        key.dirname = opts.privateKey.dirname;
+        key.name = opts.privateKey.name;
+        privateKey.privateKey = fs.readFileSync(join(key.dirname, key.name));
+    }
 
     var crx = new ChromeExtension(extensionData);
 
@@ -23,15 +30,14 @@ module.exports = function (opts) {
 
     return through(function (file) {
         console.log('start');
-        crx.load(join(__dirname, extName))
-            .then(function () {
-                return crx.pack().then(function (crxBuffer) {
-                    var updateXML = crx.generateUpdateXML();
+        crx.load(join(__dirname, extName)).then(function () {
+            return crx.pack().then(function (crxBuffer) {
+                var updateXML = crx.generateUpdateXML();
 
-                    fs.writeFile(join(__dirname, "update.xml"), updateXML);
-                    fs.writeFile(join(__dirname, extName + ".crx"), crxBuffer);
-                });
+                fs.writeFile(join(__dirname, "update.xml"), updateXML);
+                fs.writeFile(join(__dirname, extName + ".crx"), crxBuffer);
             });
+        });
     }, function () {
         console.log('end');
     });
