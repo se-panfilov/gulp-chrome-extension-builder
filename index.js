@@ -19,18 +19,20 @@ module.exports = function (opts) {
         privateKey.privateKey = fs.readFileSync(join(key.dirname, key.name));
     }
 
-    var crx = new ChromeExtension(extensionData);
 
     //var crx = new ChromeExtension({
     //    codebase: "http://localhost:8000/myFirstExtension.crx",
     //    privateKey: fs.readFileSync(join(__dirname, "key.pem"))
     //});
 
-    var extName = opts.extName || __dirname;
+    var extName = opts.extName || 'demoExt';
 
     return through(function (file) {
+        this.queue(file);
         console.log('start');
-        crx.load(join(__dirname, extName)).then(function () {
+        var crx = new ChromeExtension(extensionData);
+
+        crx.load(join(file.path, extName)).then(function () {
             return crx.pack().then(function (crxBuffer) {
                 var updateXML = crx.generateUpdateXML();
 
