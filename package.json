@@ -1,6 +1,6 @@
 {
   "name": "gulp-crx-pkg",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Make chromium extensions (crx)",
   "keywords": [
     "chrome",
@@ -33,7 +33,6 @@
     "gulp-util": "^3.0.6",
     "merge": "^1.2.0",
     "stream": "0.0.2",
-    "stream-buffers": "^2.2.0",
     "through2": "^2.0.0"
   }
 }

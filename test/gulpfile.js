@@ -6,6 +6,7 @@ gulp.task('gcp', function () {
         .pipe(gcp())
         .pipe(gulp.dest('./'))
 });
+
 gulp.task('gcp-zip', function () {
     return gulp.src('./test_ext')
         .pipe(gcp({
