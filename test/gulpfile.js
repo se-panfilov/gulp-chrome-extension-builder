@@ -1,9 +1,10 @@
 var gulp = require('gulp');
-var gcp = require('gulp-crx-pkg');
+var gcp = require('../index.js');
 
 gulp.task('gcp', function () {
     return gulp.src('./test_ext')
-        .pipe(gcp());
+        .pipe(gcp())
+        .pipe(gulp.dest('./'))
 });
 
 gulp.task('default', function () {
