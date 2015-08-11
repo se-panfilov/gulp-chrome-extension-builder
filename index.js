@@ -6,20 +6,23 @@ var join = require("path").join;
 var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
-
 var PluginError = gutil.PluginError;
-
+var streamBuffers = require("stream-buffers");
 
 module.exports = function (opt) {
 
-    var REQUIRED_PROPERTIES = ['manifest_version', 'name', 'version'];
+    //var REQUIRED_PROPERTIES = ['manifest_version', 'name', 'version'];
+
+    function showError(e) {
+        (new PluginError('gulp-crx-pkg', e));
+    }
 
     function transform(file, enc, cb) {
-        //if (file.isNull()) return cb(null, file);
+        //if (!file) return cb(new PluginError('gulp-crx-pkg', 'Files required'));
         if (file.isStream()) return cb(new PluginError('gulp-crx-pkg', 'Streaming not supported'));
 
         var options = merge({
-            some: false
+            //some: false
         }, opt);
 
 
@@ -36,17 +39,25 @@ module.exports = function (opt) {
         }
 
         var crx = new ChromeExtension(extensionData);
-        console.log('crx');
-
 
         crx.load(file.path).then(function () {
             return crx.loadContents();
-        }).then(function (archiveBuffer) {
-            fs.writeFile(file.path + '.zip', archiveBuffer);
-            return crx.pack(archiveBuffer);
-        }).then(function (crxBuffer) {
-            fs.writeFile(file.path + '.crx', crxBuffer);
-        });
+        }, showError).then(function (archiveBuffer) {
+            //fs.writeFile(file.path + '.zip', archiveBuffer);
+
+            var f = new gutil.File({
+                cwd: file.cwd,
+                base: file.base,
+                path: join(file.base, 'demo.zip'),
+                contents: archiveBuffer
+            });
+
+            return cb(null, f);
+            //return crx.pack(archiveBuffer);
+            //}, showError).then(function (crxBuffer) {
+            //fs.writeFile(file.path + '.crx', crxBuffer);
+        }, showError);
+
     }
 
     return through.obj(transform);
