@@ -13,9 +13,9 @@
     "gulpplugin",
     "packer"
   ],
-  "homepage": "https://github.com/se-panfilov/gulp-chrome-extension-builder",
+  "homepage": "https://github.com/se-panfilov/gulp-crx-pkg",
   "bugs": {
-    "url": "https://github.com/se-panfilov/gulp-chrome-extension-builder/issues"
+    "url": "https://github.com/se-panfilov/gulp-crx-pkg/issues"
   },
   "author": "S.Panfilov <se-panfilov@ya.ru> (https://se-panfilov.github.io/)",
   "main": "index.js",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/se-panfilov/gulp-chrome-extension-builder.git"
+    "url": "https://github.com/se-panfilov/gulp-crx-pkg.git"
   },
   "license": "MIT",
   "dependencies": {
