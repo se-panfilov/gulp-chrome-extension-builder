@@ -22,23 +22,23 @@ module.exports = function (opt) {
         if (file.isStream()) return cb(new PluginError('gulp-crx-pkg', 'Streaming not supported'));
 
         var options = merge({
-            //some: false
+            zip: false
         }, opt);
 
 
-        var extensionData = {};
-        extensionData.codebase = options.codebase;
-        extensionData.zip = extensionData.zip || false;
-        var key = null;
+        //var extensionData = {};
+        //extensionData.codebase = options.codebase;
+        //extensionData.zip = extensionData.zip || false;
+        //var key = null;
+        //
+        //if (options.privateKey) {
+        //    key = {};
+        //    key.dirname = options.privateKey.dirname;
+        //    key.name = options.privateKey.name;
+        //    privateKey.privateKey = fs.readFileSync(join(key.dirname, key.name));
+        //}
 
-        if (options.privateKey) {
-            key = {};
-            key.dirname = options.privateKey.dirname;
-            key.name = options.privateKey.name;
-            privateKey.privateKey = fs.readFileSync(join(key.dirname, key.name));
-        }
-
-        var crx = new ChromeExtension(extensionData);
+        var crx = new ChromeExtension(options);
 
         crx.load(file.path).then(function () {
             return crx.loadContents();
