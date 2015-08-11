@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 var ChromeExtension = require("crx");
-var join = require("path").join;
+var path = require("path");
 var through = require('through2');
 var gutil = require('gulp-util');
 var merge = require('merge');
@@ -27,23 +27,26 @@ module.exports = function (opt) {
             return crx.loadContents();
         }, showError).then(function (archiveBuffer) {
 
+            var name = path.basename(file.path);
+            var f;
+
             if (options.zip) {
-                var f = new gutil.File({
+                f = new gutil.File({
                     cwd: file.cwd,
                     base: file.base,
-                    path: join(file.base, 'demo.zip'),
+                    path: path.join(file.base, name + '.zip'),
                     contents: archiveBuffer
                 });
+
+                cb(null, f);
             }
 
-            cb(null, f);
             if (options.crx) {
                 return crx.pack(archiveBuffer).then(function (crxBuffer) {
-
-                    var f = new gutil.File({
+                    f = new gutil.File({
                         cwd: file.cwd,
                         base: file.base,
-                        path: join(file.base, 'demo.crx'),
+                        path: path.join(file.base, name + '.crx'),
                         contents: crxBuffer
                     });
 

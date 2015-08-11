@@ -18,4 +18,4 @@ gulp.task('gcp-zip', function () {
 History
 ------
 
-v0.1.0 - Only zip supported
+v0.1.1 - Only zip supported
