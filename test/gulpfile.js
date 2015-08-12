@@ -17,7 +17,7 @@ gulp.task('gcp-zip', function () {
 });
 
 gulp.task('default', function () {
-    gulp.start('gcp-zip');
+    gulp.start('gcp');
 });
 
 gulp.task('zip', function () {
